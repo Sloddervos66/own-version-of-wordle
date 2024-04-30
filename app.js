@@ -31,9 +31,35 @@ const module = (() => {
         return output;
     }
 
+    // Function to retrieve a specific cookie value
+    function _getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i <cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) == ' ') {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) == 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    }
+
+    function _setCookie(cookieName, cookieValue, daysToExpire) {
+        const expirationDate = new Date();
+        expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + expirationDate.toUTCString();
+        document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+    }
+
     return {
         generate5Letters: _generate5Letters,
-        areAnagrams: _areAnagrams
+        areAnagrams: _areAnagrams,
+        getCookie: _getCookie,
+        setCookie: _setCookie
     };
 })();
 
@@ -43,6 +69,12 @@ const word = document.getElementById('word');
 const amountOfLetters = 5;
 const amountOfMaxTries = 5;
 let amountOfTries = 0;
+
+if (!module.getCookie('amountOfTries')) {
+    module.setCookie('amountOfTries', amountOfTries, 365);
+} else {
+    amountOfTries = module.getCookie('amountOfTries');
+}
 
 word.innerHTML = module.generate5Letters(amountOfLetters);
 
@@ -81,5 +113,6 @@ const submitButton = document.getElementById('submitButton');
 
 submitButton.addEventListener('click', () => {
     amountOfTries++;
+    module.setCookie('amountOfTries', amountOfTries, 365);
 });
 
