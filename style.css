@@ -1,3 +1,57 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    background-color: rgb(25, 25, 30);
+    color: rgb(220, 220, 220);
+}
+header{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    background-color: rgb(20, 20, 25);
+    padding-bottom: 5px;
+}
+main{
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    align-items: center;
+}
+button{
+    background-color: green;
+    color: white;
+    border: outset 5px;
+    border: 0px;
+    height: 50px;
+    width: 200px;
+    display: block;
+    margin: 10px auto 0;
+}
+#word{
+    display: none;
+}
+hr{
+    margin: 0 0 20px;
+}
+button:hover{
+    background-color: rgb(0, 110, 0);
+}
+button:active{
+    border: inset 5px green;
+}
 .className {
-    background-color: blue;
+    color: rgb(200, 200, 200);
+    background-color: rgb(50, 50, 60);
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0px;
+    height: 65px;
+    width: 65px;
+    font-size: 50px;
+    margin: 5px 3px;
+    text-align: center;
+}
+#formList{
+    list-style-type: none;
 }
