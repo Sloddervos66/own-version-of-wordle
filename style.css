@@ -115,6 +115,6 @@ button:active{
     background-color: rgb(200, 100, 50);
     color: black;
 }
-#formList{
+#formList1, #formList2 {
     list-style-type: none;
 }

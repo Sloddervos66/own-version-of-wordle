@@ -17,6 +17,7 @@ const module = (() => {
         return sortedStr1 === sortedStr2;
     }
 
+    // Function to generate a random 5 letter word
     const _generate5Letters = (n) => {
         // Alphabet turned into an array
         const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -48,6 +49,7 @@ const module = (() => {
         return "";
     }
 
+    // Function to set a cookie
     function _setCookie(cookieName, cookieValue, daysToExpire) {
         const expirationDate = new Date();
         expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
@@ -55,20 +57,67 @@ const module = (() => {
         document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
     }
 
+    // Function to check if a cookie has expired
+    function _isExpired(dateTimeValue) {
+        const currentTime = new Date().getTime();
+        const cookieTime = parseInt(dateTimeValue);
+        return (currentTime - cookieTime) > (24 * 60 * 60 * 1000); 
+    }
+
+    // Function to add input fields to a list
+    const _addInputFields = (listElements, list) => {
+        listElements.forEach(listElement => {
+            for (let i = 0; i < amountOfLetters; i++) {
+                let inputField = document.createElement('input');
+                inputField.setAttribute('id', `id${i}`);
+                inputField.type = 'text';
+                inputField.maxLength = 1;
+                inputField.classList.add('className');
+    
+                listElement.appendChild(inputField);
+            }
+
+            list.appendChild(listElement);
+        });
+    }
+
+    // Function to disable input fields
+    const _disableInputFields = (listElements) => {
+        listElements.forEach((listElement, index) => {
+            if (index !== amountOfTries) {
+                const inputFields = listElement.querySelectorAll('input');
+                inputFields.forEach(inputField => {
+                    inputField.disabled = true;
+                });
+            }
+        });
+    }
+
     return {
         generate5Letters: _generate5Letters,
         areAnagrams: _areAnagrams,
+        addInputFields: _addInputFields,
+        disableInputFields: _disableInputFields,
         getCookie: _getCookie,
         setCookie: _setCookie
     };
 })();
 
-const formList = document.getElementById('formList');
+const formList1 = document.getElementById('formList1');
+const formList2 = document.getElementById('formList2');
 const word = document.getElementById('word');
 
 const amountOfLetters = 5;
-const amountOfMaxTries = 5;
+const amountOfMaxTries = 4;
 let amountOfTries = 0;
+let dateTimeExists = false;
+
+if(!module.getCookie('dateTime')) {
+    module.setCookie('dateTime', true, 1);
+    dateTimeExists = true;
+} else {
+    dateTimeExists = module.getCookie('dateTime');
+}
 
 if (!module.getCookie('amountOfTries')) {
     module.setCookie('amountOfTries', amountOfTries, 365);
@@ -78,36 +127,21 @@ if (!module.getCookie('amountOfTries')) {
 
 word.innerHTML = module.generate5Letters(amountOfLetters);
 
-const listElements = [];
+const listElements1 = [];
+const listElements2 = [];
 
 for (let i = 0; i <= amountOfMaxTries; i++) {
     let listElement = document.createElement('li');
 
-    listElements.push(listElement);
+    listElements1.push(listElement);
+    listElements2.push(listElement);
 }
 
-listElements.forEach(listElement => {
-    for (let i = 0; i < amountOfLetters; i++) {
-        let inputField = document.createElement('input');
-        inputField.setAttribute('id', `id${i}`);
-        inputField.type = 'text';
-        inputField.maxLength = 1;
-        inputField.classList.add('className');
+module.addInputFields(listElements1, formList1);
+module.addInputFields(listElements2, formList2);
 
-        listElement.appendChild(inputField);
-    }
-
-    formList.appendChild(listElement);
-});
-
-listElements.forEach((listElement, index) => {
-    if (index !== amountOfTries) {
-        const inputFields = listElement.querySelectorAll('input');
-        inputFields.forEach(inputField => {
-            inputField.disabled = true;
-        });
-    }
-});
+module.disableInputFields(listElements1);
+moduke.disableInputFields(listElements2);
 
 const submitButton = document.getElementById('submitButton');
 
@@ -116,3 +150,16 @@ submitButton.addEventListener('click', () => {
     module.setCookie('amountOfTries', amountOfTries, 365);
 });
 
+// Retrieve the datetime of a cookie
+const dateTimeCookieValue = module.getCookie('dateTime');
+
+// Check if the cookie exists and is not empty
+if (dateTimeCookieValue) {
+    // Parse the datetime value to a readable format
+    const dateTime = new Date(parseInt(dateTimeCookieValue));
+    console.log('Datetime of the cookie:', dateTime);
+} else {
+    console.log('Cookie not found or empty.');
+}
+
+console.log('Value of the dateTime cookie:', dateTimeCookieValue);
