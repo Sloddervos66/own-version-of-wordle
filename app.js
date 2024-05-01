@@ -1,4 +1,7 @@
 const module = (() => {
+    const encryptionKey = import.meta.env.ENCRYPTION_KEY;
+
+    console.log(encryptionKey);
 
     // Function to check for anagrams
     const _areAnagrams = (str1, str2) => {
@@ -191,3 +194,5 @@ submitButton.addEventListener('click', () => {
         submitButton.disabled = true;
     }
 });
+
+console.log(env.ENCRYPTION_KEY);
