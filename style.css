@@ -1,35 +1,36 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
 }
-body{
+body {
     background-color: rgb(25, 25, 30);
     color: rgb(220, 220, 220);
 }
-header{
+header {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
     background-color: rgb(20, 20, 25);
     padding-bottom: 5px;
 }
-main{
+main {
     margin: auto;
-    width: 455px;
+    max-width: 330px;
     padding: 10px;
     align-items: center;
 }
-h1{
+h1 {
     width: 50%;
     margin: auto;
 }
-#word{
+#word {
     display: none;
 }
-hr{
+hr {
     margin: 0 0 20px;
 }
-.drop{
+
+.drop {
     position: absolute;
     width: 150px;
     text-align: left;
@@ -38,7 +39,7 @@ hr{
     text-decoration: underline green;
     font-family: Arial, Helvetica, sans-serif;
 }
-.explanation{
+.explanation {
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     top: 30px;
@@ -48,33 +49,33 @@ hr{
     display: none;
     padding: 10px;
 }
-span{
+span {
     margin: 0 2px;
 }
-.drop:hover + .explanation{
+.drop:hover + .explanation {
     display: block;
 }
-.WrongLetter{
+.WrongLetter {
     background-color: rgb(100, 100, 100);
     color: white;
 }
-.WrongPlace{
+.WrongPlace {
     background-color: rgb(140, 140, 30);
     color: white;
 }
-.CorrectPlace{
+.CorrectPlace {
     background-color: rgb(30, 140, 30);
     color: white;
 }
-.WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace{
+.WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace {
     margin: 5px;
     border-radius: 10px;
 }
-.nomargin{
+.nomargin {
     margin-bottom: -15px;
 }
 
-button{
+button {
     background-color: green;
     color: white;
     border: outset 5px;
@@ -85,35 +86,40 @@ button{
     margin: 10px auto 0;
     font-size: 25px;
 }
-button:hover{
+button:hover {
     background-color: rgb(0, 110, 0);
 }
-button:active{
+button:active {
     border: inset 5px green;
 }
+
 .className {
     color: rgb(200, 200, 200);
     background-color: rgb(50, 50, 60);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-size: 35px;
     font-weight: bold;
     border: 1px solid rgb(150, 150, 150);
-    height: 65px;
-    width: 65px;
+    height: 40px;
+    width: 40px;
     margin: 5px 3px;
     text-align: center;
 }
-.hcWrongLetter{
+.hcWrongLetter {
     background-color: rgb(100, 100, 100);
     color: black;
 }
-.hcWrongPlace{
+.hcWrongPlace {
     background-color: rgb(50, 100, 200);
     color: black;
 }
-.hcCorrectPlace{
+.hcCorrectPlace {
     background-color: rgb(200, 100, 50);
     color: black;
+}
+
+#formLeft, #formRight{
+
 }
 #formList1, #formList2 {
     list-style-type: none;

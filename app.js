@@ -1,4 +1,5 @@
 const module = (() => {
+
     // Function to check for anagrams
     const _areAnagrams = (str1, str2) => {
         // Convert strings to lowercase and remove spaces
@@ -49,12 +50,17 @@ const module = (() => {
         return "";
     }
 
-    // Function to set a cookie
-    function _setCookie(cookieName, cookieValue, daysToExpire) {
+    // Function to set a cookie with a hashed value
+    async function _setCookie(cookieName, cookieValue, daysToExpire) {
         const expirationDate = new Date();
         expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
         const expires = "expires=" + expirationDate.toUTCString();
-        document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+        const sameSite = "sameSite=True;"
+
+        // Hash cookie value
+        const hashValue = await hashCookieValue(cookieValue);
+
+        document.cookie = cookieName + "=" + hashValue + ";" + expires + ";path=/";
     }
 
     // Function to check if a cookie has expired
@@ -82,15 +88,35 @@ const module = (() => {
     }
 
     // Function to disable input fields
-    const _disableInputFields = (listElements) => {
-        listElements.forEach((listElement, index) => {
-            if (index !== amountOfTries) {
+    const _disableInputFields = (listElements, amountOfTries) => {
+        if (amountOfTries < 5) {
+            listElements.forEach((listElement, index) => {
                 const inputFields = listElement.querySelectorAll('input');
-                inputFields.forEach(inputField => {
-                    inputField.disabled = true;
-                });
-            }
-        });
+                if (index !== parseInt(amountOfTries)) {
+                    inputFields.forEach(inputField => {
+                        inputField.disabled = true;
+                    });
+                } else {
+                    inputFields.forEach(inputField => {
+                        inputField.disabled = false;
+                    });
+                }
+            });
+        } else {
+            let newNumber = amountOfTries - 5;
+            listElements.forEach((listElement, index) => {
+                const inputFields = listElement.querySelectorAll('input');
+                if (index !== newNumber) {
+                    inputFields.forEach(inputField => {
+                        inputField.disabled = true;
+                    });
+                } else {
+                    inputFields.forEach(inputField => {
+                        inputField.disabled = false;
+                    });
+                }
+            });
+        }
     }
 
     return {
@@ -106,60 +132,62 @@ const module = (() => {
 const formList1 = document.getElementById('formList1');
 const formList2 = document.getElementById('formList2');
 const word = document.getElementById('word');
+const submitButton = document.getElementById('submitButton');
 
 const amountOfLetters = 5;
-const amountOfMaxTries = 4;
+const amountOfMaxTries = 10;
 let amountOfTries = 0;
-let dateTimeExists = false;
-
-if(!module.getCookie('dateTime')) {
-    module.setCookie('dateTime', true, 1);
-    dateTimeExists = true;
-} else {
-    dateTimeExists = module.getCookie('dateTime');
-}
 
 if (!module.getCookie('amountOfTries')) {
-    module.setCookie('amountOfTries', amountOfTries, 365);
+    module.setCookie('amountOfTries', amountOfTries, 1);
 } else {
     amountOfTries = module.getCookie('amountOfTries');
 }
 
-word.innerHTML = module.generate5Letters(amountOfLetters);
+if (!module.getCookie('dailyWord')) {
+    module.setCookie('dailyWord', module.generate5Letters(amountOfLetters), 1);
+} 
+
+word.innerHTML = module.getCookie('dailyWord');
 
 const listElements1 = [];
 const listElements2 = [];
 
-for (let i = 0; i <= amountOfMaxTries; i++) {
+const allListElements = [listElements1, listElements2];
+const allFormLists = [formList1, formList2];
+
+for (let i = 0; i < amountOfMaxTries; i++) {
     let listElement = document.createElement('li');
 
-    listElements1.push(listElement);
-    listElements2.push(listElement);
+    if (i < 5) {
+        listElements1.push(listElement);
+    } else {
+        listElements2.push(listElement);
+    }
 }
 
-module.addInputFields(listElements1, formList1);
-module.addInputFields(listElements2, formList2);
+for (let i = 0; i < allListElements.length; i++) {
+    let listElement = allListElements[i];
+    let formList = allFormLists[i];
 
-module.disableInputFields(listElements1);
-moduke.disableInputFields(listElements2);
-
-const submitButton = document.getElementById('submitButton');
+    module.addInputFields(listElement, formList);
+    module.disableInputFields(listElement, amountOfTries);
+}
 
 submitButton.addEventListener('click', () => {
     amountOfTries++;
-    module.setCookie('amountOfTries', amountOfTries, 365);
+
+    module.setCookie('amountOfTries', amountOfTries, 1);
+
+    for (let i = 0; i < allListElements.length; i++) {
+        let listElement = allListElements[i];
+        let formList = allFormLists[i];
+
+        module.addInputFields(listElement, formList);
+        module.disableInputFields(listElement, amountOfTries);
+    }
+
+    if (parseInt(amountOfTries) >= amountOfMaxTries) {
+        submitButton.disabled = true;
+    }
 });
-
-// Retrieve the datetime of a cookie
-const dateTimeCookieValue = module.getCookie('dateTime');
-
-// Check if the cookie exists and is not empty
-if (dateTimeCookieValue) {
-    // Parse the datetime value to a readable format
-    const dateTime = new Date(parseInt(dateTimeCookieValue));
-    console.log('Datetime of the cookie:', dateTime);
-} else {
-    console.log('Cookie not found or empty.');
-}
-
-console.log('Value of the dateTime cookie:', dateTimeCookieValue);
