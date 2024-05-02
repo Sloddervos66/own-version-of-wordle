@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
     <script defer src="app.js"></script>
     <title>Weirdle</title>
 </head>
@@ -18,6 +20,20 @@
         <div class="CorrectPlace">If it's this color, it's the correct word in the correct place.</div>
     If you cannot tell the difference between these colors, toggle high contrast mode.</p> </div>
     <h1>Weirdle</h1>
+    <i onclick="settingsMenu()" class="material-icons" id="settingsIcon">settings</i>
+    <div class="settings" id="settingsMenu">
+        <form>
+            <div class="setting">
+                <input type="checkbox" id="dmSwitch" checked>
+            <label for="dmSwitch">Dark mode</label>
+        </div>
+        <hr class="settingdivider">
+        <div class="setting">
+          <input type="checkbox" id="hcSwitch">
+          <label for="hcSwitch">High-contrast mode</label>
+          </div>
+        </form>
+    </div>
     <h4 id="word"> </h4>
     </header>
     <hr>

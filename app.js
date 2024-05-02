@@ -191,3 +191,17 @@ submitButton.addEventListener('click', () => {
         submitButton.disabled = true;
     }
 });
+
+//Make the settings button display the settings menu
+function settingsMenu() {
+    document.getElementById("settingsMenu").classList.toggle("settingsShown");
+  }
+
+  document.addEventListener("click", function(event) {
+    var settingsMenu = document.getElementById("settingsMenu");
+    var settingsIcon = document.getElementById("settingsIcon");
+
+    if (!settingsMenu.contains(event.target) && event.target !== settingsIcon) {
+        settingsMenu.classList.remove("settingsShown");
+    }
+});

@@ -8,7 +8,6 @@ body {
 }
 header {
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
     background-color: rgb(20, 20, 25);
     padding-bottom: 5px;
@@ -22,9 +21,45 @@ main {
 h1 {
     width: 50%;
     margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 60px;
 }
 #word {
     display: none;
+}
+#settingsIcon {
+    font-size: 40px;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    user-select: none;
+    cursor: pointer;
+}
+.settings {
+    display: none;
+}
+.settingsShown {
+    display: block;
+    background-color: rgb(50, 50, 60);
+    position: absolute;
+    top: 60px;
+    right: 5px;
+    padding: 10px 25px;
+    text-align: left;
+    font-size: 20px;
+}
+input[type=checkbox]{
+    height: 20px;
+    border-radius: 0px;
+}
+.setting {
+    width: 100%;
+    margin: 10px 0;
+    user-select: none;
+}
+.settingdivider {
+    margin: 0px;
+    padding: 0px;
 }
 hr {
     margin: 0 0 20px;
@@ -37,10 +72,8 @@ hr {
     margin: 0;
     cursor: default;
     text-decoration: underline green;
-    font-family: Arial, Helvetica, sans-serif;
 }
 .explanation {
-    font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     top: 30px;
     background-color: rgb(50, 50, 60);
