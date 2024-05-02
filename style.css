@@ -25,7 +25,7 @@ h1 {
     font-size: 60px;
 }
 #word {
-    display: none;
+    display: block;
 }
 #settingsIcon {
     font-size: 40px;
@@ -88,19 +88,7 @@ span {
 .drop:hover + .explanation {
     display: block;
 }
-.WrongLetter {
-    background-color: rgb(100, 100, 100);
-    color: white;
-}
-.WrongPlace {
-    background-color: rgb(140, 140, 30);
-    color: white;
-}
-.CorrectPlace {
-    background-color: rgb(30, 140, 30);
-    color: white;
-}
-.WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace {
+.WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace{
     margin: 5px;
     border-radius: 10px;
 }
@@ -150,14 +138,21 @@ button:active {
     background-color: rgb(200, 100, 50);
     color: black;
 }
-
-#formLeft, #formRight{
-
+.WrongLetter{
+    background-color: rgb(100, 100, 100);
+    color: white;
+}
+.WrongPlace{
+    background-color: rgb(140, 140, 30);
+    color: white;
+}
+.CorrectPlace{
+    background-color: rgb(30, 140, 30);
+    color: white;
 }
 #formList1, #formList2 {
     list-style-type: none;
 }
-
 .lightmode{
     background-color: rgb(190, 190, 200);
 }
