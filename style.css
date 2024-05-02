@@ -51,18 +51,6 @@ span{
 .drop:hover + .explanation{
     display: block;
 }
-.WrongLetter{
-    background-color: rgb(100, 100, 100);
-    color: white;
-}
-.WrongPlace{
-    background-color: rgb(140, 140, 30);
-    color: white;
-}
-.CorrectPlace{
-    background-color: rgb(30, 140, 30);
-    color: white;
-}
 .WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace{
     margin: 5px;
     border-radius: 10px;
@@ -111,6 +99,18 @@ button:active{
 .hcCorrectPlace{
     background-color: rgb(200, 100, 50);
     color: black;
+}
+.WrongLetter{
+    background-color: rgb(100, 100, 100);
+    color: white;
+}
+.WrongPlace{
+    background-color: rgb(140, 140, 30);
+    color: white;
+}
+.CorrectPlace{
+    background-color: rgb(30, 140, 30);
+    color: white;
 }
 #formList1, #formList2 {
     list-style-type: none;

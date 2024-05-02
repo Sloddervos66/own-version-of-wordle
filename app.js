@@ -1,24 +1,20 @@
 const module = (() => {
-    const encryptionKey = import.meta.env.ENCRYPTION_KEY;
+    // Function to check the input fields with the word
+    const _checkInputs = (inputFields, word) => {
+        const inputFieldsArray = Array.from(inputFields)
+        const guessedWord = inputFieldsArray.map(inputField => inputField.value).join('');
 
-    console.log(encryptionKey);
+        for (let i = 0; i < word.length; i++) {
+            if (guessedWord[i] === word[i]) {
+                inputFields[i].classList.add('CorrectPlace');
+            } else if (word.includes(guessedWord[i])) {
+                inputFields[i].classList.add('WrongPlace');
+            } else {
+                inputFields[i].classList.add('WrongLetter');
+            }
 
-    // Function to check for anagrams
-    const _areAnagrams = (str1, str2) => {
-        // Convert strings to lowercase and remove spaces
-        const processedStr1 = str1.toLowerCase().replace(/\s/g, '');
-        const processedStr2 = str2.toLowerCase().replace(/\s/g, '');
-
-        // Check if the lengths of the processed strings are equal
-        if (processedStr1.length !== processedStr2.length) {
-            return false;
+            console.log(inputFields[i].classList);
         }
-
-        // Sort the characters of both strings and compare them
-        const sortedStr1 = processedStr1.split('').sort().join('');
-        const sortedStr2 = processedStr2.split('').sort().join('');
-
-        return sortedStr1 === sortedStr2;
     }
 
     // Function to generate a random 5 letter word
@@ -58,12 +54,11 @@ const module = (() => {
         const expirationDate = new Date();
         expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
         const expires = "expires=" + expirationDate.toUTCString();
-        const sameSite = "sameSite=True;"
 
         // Hash cookie value
-        const hashValue = await hashCookieValue(cookieValue);
+        //const hashValue = await hashCookieValue(cookieValue);
 
-        document.cookie = cookieName + "=" + hashValue + ";" + expires + ";path=/";
+        document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
     }
 
     // Function to check if a cookie has expired
@@ -124,7 +119,7 @@ const module = (() => {
 
     return {
         generate5Letters: _generate5Letters,
-        areAnagrams: _areAnagrams,
+        checkInputs: _checkInputs,
         addInputFields: _addInputFields,
         disableInputFields: _disableInputFields,
         getCookie: _getCookie,
@@ -178,21 +173,21 @@ for (let i = 0; i < allListElements.length; i++) {
 }
 
 submitButton.addEventListener('click', () => {
-    amountOfTries++;
+    const inputFields = listElements1[amountOfTries].querySelectorAll('input');
+    module.checkInputs(inputFields, word.textContent);  
+    // amountOfTries++;
 
-    module.setCookie('amountOfTries', amountOfTries, 1);
+    // module.setCookie('amountOfTries', amountOfTries, 1);
 
-    for (let i = 0; i < allListElements.length; i++) {
-        let listElement = allListElements[i];
-        let formList = allFormLists[i];
+    // for (let i = 0; i < allListElements.length; i++) {
+    //     let listElement = allListElements[i];
+    //     let formList = allFormLists[i];
 
-        module.addInputFields(listElement, formList);
-        module.disableInputFields(listElement, amountOfTries);
-    }
+    //     module.addInputFields(listElement, formList);
+    //     module.disableInputFields(listElement, amountOfTries);
+    // }
 
-    if (parseInt(amountOfTries) >= amountOfMaxTries) {
-        submitButton.disabled = true;
-    }
+    // if (parseInt(amountOfTries) >= amountOfMaxTries) {
+    //     submitButton.disabled = true;
+    // }
 });
-
-console.log(env.ENCRYPTION_KEY);
