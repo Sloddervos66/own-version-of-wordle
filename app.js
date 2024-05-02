@@ -205,3 +205,8 @@ function settingsMenu() {
         settingsMenu.classList.remove("settingsShown");
     }
 });
+
+/* Class for light mode: "lightmode". I've set the background-color for the ids of some elements, so when I tried adding the lightmode class
+to an element that had that, it didn't work, and idk how I can fix this.
+
+Class for high-contrast mode: the names "WrongLetter", "WrongPlace" and "CorrectPlace" are the original names. Add a "hc" before that for high-contrast. */

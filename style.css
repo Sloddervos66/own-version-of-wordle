@@ -157,3 +157,11 @@ button:active {
 #formList1, #formList2 {
     list-style-type: none;
 }
+
+.lightmode{
+    background-color: rgb(190, 190, 200);
+}
+body.lightmode{
+    background-color: rgb(200, 200, 210);
+    color: black;
+}
