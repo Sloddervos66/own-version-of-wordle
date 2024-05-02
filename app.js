@@ -191,3 +191,22 @@ submitButton.addEventListener('click', () => {
     //     submitButton.disabled = true;
     // }
 });
+
+//Make the settings button display the settings menu
+function settingsMenu() {
+    document.getElementById("settingsMenu").classList.toggle("settingsShown");
+  }
+
+  document.addEventListener("click", function(event) {
+    var settingsMenu = document.getElementById("settingsMenu");
+    var settingsIcon = document.getElementById("settingsIcon");
+
+    if (!settingsMenu.contains(event.target) && event.target !== settingsIcon) {
+        settingsMenu.classList.remove("settingsShown");
+    }
+});
+
+/* Class for light mode: "lightmode". I've set the background-color for the ids of some elements, so when I tried adding the lightmode class
+to an element that had that, it didn't work, and idk how I can fix this.
+
+Class for high-contrast mode: the names "WrongLetter", "WrongPlace" and "CorrectPlace" are the original names. Add a "hc" before that for high-contrast. */

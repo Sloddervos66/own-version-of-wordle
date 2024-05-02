@@ -1,42 +1,79 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
 }
-body{
+body {
     background-color: rgb(25, 25, 30);
     color: rgb(220, 220, 220);
 }
-header{
+header {
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 25px;
     background-color: rgb(20, 20, 25);
     padding-bottom: 5px;
 }
-main{
+main {
     margin: auto;
-    width: 455px;
+    max-width: 330px;
     padding: 10px;
     align-items: center;
 }
-h1{
+h1 {
     width: 50%;
     margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 60px;
 }
-hr{
+#word {
+    display: block;
+}
+#settingsIcon {
+    font-size: 40px;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    user-select: none;
+    cursor: pointer;
+}
+.settings {
+    display: none;
+}
+.settingsShown {
+    display: block;
+    background-color: rgb(50, 50, 60);
+    position: absolute;
+    top: 60px;
+    right: 5px;
+    padding: 10px 25px;
+    text-align: left;
+    font-size: 20px;
+}
+input[type=checkbox]{
+    height: 20px;
+    border-radius: 0px;
+}
+.setting {
+    width: 100%;
+    margin: 10px 0;
+    user-select: none;
+}
+.settingdivider {
+    margin: 0px;
+    padding: 0px;
+}
+hr {
     margin: 0 0 20px;
 }
-.drop{
+
+.drop {
     position: absolute;
     width: 150px;
     text-align: left;
     margin: 0;
     cursor: default;
     text-decoration: underline green;
-    font-family: Arial, Helvetica, sans-serif;
 }
-.explanation{
-    font-family: Arial, Helvetica, sans-serif;
+.explanation {
     position: absolute;
     top: 30px;
     background-color: rgb(50, 50, 60);
@@ -45,21 +82,21 @@ hr{
     display: none;
     padding: 10px;
 }
-span{
+span {
     margin: 0 2px;
 }
-.drop:hover + .explanation{
+.drop:hover + .explanation {
     display: block;
 }
 .WrongLetter, .WrongPlace, .CorrectPlace, .hcWrongLetter, .hcWrongPlace, .hcCorrectPlace{
     margin: 5px;
     border-radius: 10px;
 }
-.nomargin{
+.nomargin {
     margin-bottom: -15px;
 }
 
-button{
+button {
     background-color: green;
     color: white;
     border: outset 5px;
@@ -70,33 +107,34 @@ button{
     margin: 10px auto 0;
     font-size: 25px;
 }
-button:hover{
+button:hover {
     background-color: rgb(0, 110, 0);
 }
-button:active{
+button:active {
     border: inset 5px green;
 }
+
 .className {
     color: rgb(200, 200, 200);
     background-color: rgb(50, 50, 60);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-size: 35px;
     font-weight: bold;
     border: 1px solid rgb(150, 150, 150);
-    height: 65px;
-    width: 65px;
+    height: 40px;
+    width: 40px;
     margin: 5px 3px;
     text-align: center;
 }
-.hcWrongLetter{
+.hcWrongLetter {
     background-color: rgb(100, 100, 100);
     color: black;
 }
-.hcWrongPlace{
+.hcWrongPlace {
     background-color: rgb(50, 100, 200);
     color: black;
 }
-.hcCorrectPlace{
+.hcCorrectPlace {
     background-color: rgb(200, 100, 50);
     color: black;
 }
@@ -114,4 +152,11 @@ button:active{
 }
 #formList1, #formList2 {
     list-style-type: none;
+}
+.lightmode{
+    background-color: rgb(190, 190, 200);
+}
+body.lightmode{
+    background-color: rgb(200, 200, 210);
+    color: black;
 }
