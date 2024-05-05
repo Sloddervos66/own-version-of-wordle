@@ -11,43 +11,44 @@
 </head>
 <body>
     <header>
-    <div class="drop">How it works</div>
-    <div class="explanation"> <p class="exp">
-        This works like wordle, but every letter combination is possible, instead of it being limited to the dictionary!<hr class="nomargin">
-        <br>Try guessing a 5-character word.
-        <div class="WrongLetter">If the background is gray, then it's incorrect.</div>
-        <div class="WrongPlace">If it's this color, then it's a correct word in the wrong place</div>
-        <div class="CorrectPlace">If it's this color, it's the correct word in the correct place.</div>
-    If you cannot tell the difference between these colors, toggle high contrast mode.</p> </div>
-    <h1>Weirdle</h1>
-    <i onclick="settingsMenu()" class="material-icons" id="settingsIcon">settings</i>
-    <div class="settings" id="settingsMenu">
-        <form>
+        <div class="drop">How it works</div>
+        <div class="explanation"> <p class="exp">
+            This works like wordle, but every letter combination is possible, instead of it being limited to the dictionary!<hr class="nomargin">
+            <br>Try guessing a 5-character word.
+            <div id="hiwWrongL" class="WrongLetter">If the background is gray, then it's incorrect.</div>
+            <div id="hiwWrongP" class="WrongPlace">If it's this color, then it's a correct word in the wrong place</div>
+            <div id="hiwCorrectL" class="CorrectPlace">If it's this color, it's the correct word in the correct place.</div>
+        If you cannot tell the difference between these colors, toggle high contrast mode.</p> </div>
+        <h1>Weirdle</h1>
+        <i onclick="settingsMenu()" class="material-icons" id="settingsIcon">settings</i>
+        <div class="settings" id="settingsMenu">
+            <form>
+                <div class="setting">
+                    <input type="checkbox" id="dmSwitch" checked>
+                <label for="dmSwitch">Dark mode</label>
+            </div>
+            <hr class="settingdivider">
             <div class="setting">
-                <input type="checkbox" id="dmSwitch" checked>
-            <label for="dmSwitch">Dark mode</label>
+            <input type="checkbox" id="hcSwitch">
+            <label for="hcSwitch">High-contrast mode</label>
+            </div>
+            </form>
         </div>
-        <hr class="settingdivider">
-        <div class="setting">
-          <input type="checkbox" id="hcSwitch">
-          <label for="hcSwitch">High-contrast mode</label>
-          </div>
-        </form>
-    </div>
-    <h4 id="word"> </h4>
+        <h4 id="word"></h4>
     </header>
     <hr>
     <main>
-    <form id="form">
-        <div id="formLeft">
-            <ul id="formList1">
-            </ul>
-        </div>
-        <div id="formRight">
-            <ul id="formList2">
-            </ul>
-        </div>
-        <button id="submitButton">Klik mij!</button>
+        <form id="form" autocomplete="off">
+            <div id="formLeft">
+                <ul id="formList1">
+                </ul>
+            </div>
+            <div id="formRight">
+                <ul id="formList2">
+                </ul>
+            </div>
+        </form>
+        <button id="submitButton">Guess!</button>
     </main>    
 </body>
 </html>
